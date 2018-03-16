@@ -30,7 +30,7 @@ return [
     'columns' => [
         'hidden' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.hidden',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
                 'default' => '0'
@@ -38,22 +38,22 @@ return [
         ],
         'fe_group' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.fe_group',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     ['', 0],
-                    ['LLL:EXT:lang/locallang_general.php:LGL.hide_at_login', -1],
-                    ['LLL:EXT:lang/locallang_general.php:LGL.any_login', -2],
-                    ['LLL:EXT:lang/locallang_general.php:LGL.usergroups', '--div--']
+                    ['LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login', -1],
+                    ['LLL:EXT:lang/locallang_general.xlf:LGL.any_login', -2],
+                    ['LLL:EXT:lang/locallang_general.xlf:LGL.usergroups', '--div--']
                 ],
                 'foreign_table' => 'fe_groups'
             ]
         ],
         'title' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.title',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.title',
             'config' => [
                 'type' => 'input',
                 'size' => '30',
@@ -61,7 +61,7 @@ return [
             ]
         ],
         'shortcut' => [
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.shortcut_page',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.shortcut_page',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
@@ -75,22 +75,22 @@ return [
         ],
         'sys_language_uid' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [
-                    ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages', -1],
-                    ['LLL:EXT:lang/locallang_general.php:LGL.default_value', 0]
+                    ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
+                    ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
                 ]
             ]
         ],
         'l18n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
