@@ -5,7 +5,7 @@ if (is_array($GLOBALS['TCA']['pages']['ctrl']['typeicon_classes'])) {
 }
 
 // Adding sysfolder icon
-$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['0']
+$GLOBALS['TCA']['pages']['columns']['module']['config']['items']['irfaq']['0']
         = 'LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.sysfolder';
-$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['1'] = $_EXTKEY;
+$GLOBALS['TCA']['pages']['columns']['module']['config']['items']['irfaq']['1'] = 'irfaq';
 
