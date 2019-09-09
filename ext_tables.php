@@ -31,15 +31,6 @@ $TCA['pages']['columns']['module']['config']['items'][$_EXTKEY]['1'] = $_EXTKEY;
 
 
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
-    ['LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1', $_EXTKEY . '_pi1'],
-    'list_type'
-);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    $_EXTKEY . '_pi1',
-    'FILE:EXT:irfaq/Configuration/FlexForms/flexform_ds.xml'
-);
-
 
 
 if (TYPO3_MODE == 'BE') {

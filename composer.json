@@ -1,0 +1,24 @@
+{
+    "name": "netcreators/irfaq",
+    "type": "typo3-cms-extension",
+    "description": "IrFaq",
+    "authors": [
+        {
+            "name": "Netcreators",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^9.5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Netcreators\\Irfaq\\": "Classes"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "vendor-dir": ".build/vendor",
+        "bin-dir": ".build/bin"
+    }
+}

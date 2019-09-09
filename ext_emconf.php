@@ -15,11 +15,11 @@ $EM_CONF[$_EXTKEY] = [
     'description' => 'FAQ frontend plugin with dynamic or static view which will merge and improve functionality of EXT:faq and EXT:faq_plus into a modern look',
     'category' => 'plugin',
     'shy' => 0,
-    'version' => '1.7.12',
+    'version' => '9.5.0',
     'priority' => '',
     'loadOrder' => '',
     'module' => '',
-    'state' => 'stable',
+    'state' => 'beta',
     'uploadfolder' => 0,
     'createDirs' => '',
     'modify_tables' => '',
@@ -34,8 +34,8 @@ $EM_CONF[$_EXTKEY] = [
         [
             'depends' =>
                 [
-                    'typo3' => '7.6.15-8.9.99',
-                    'php' => '5.5-7.99',
+                    'typo3' => '9.5.0-9.5.99',
+                    'php' => '7.2.0-7.2.99',
                 ],
             'conflicts' =>
                 [],

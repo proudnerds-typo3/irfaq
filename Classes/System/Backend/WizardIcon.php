@@ -43,7 +43,7 @@ class WizardIcon
         $localLang = $this->getLocalLang();
 
         $wizardItems['plugins_tx_irfaq_pi1'] = [
-            'icon' => ExtensionManagementUtility::extRelPath('irfaq') . 'Resources/Public/Icons/ce_wiz.gif',
+            'icon' => ExtensionManagementUtility::extPath('irfaq') . 'Resources/Public/Icons/ce_wiz.gif',
             'title' => $languageService->getLLL('pi1_title_irfaq', $localLang),
             'description' => $languageService->getLLL('pi1_plus_wiz_description_irfaq', $localLang),
             'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=irfaq_pi1'

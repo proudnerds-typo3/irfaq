@@ -22,7 +22,11 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -63,15 +67,21 @@ class ext_update
      */
     function access()
     {
-        // Check if there are any instances of irfaq in the system
-        list($row) = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'COUNT(*) AS t',
-            'tt_content',
-            'list_type=\'irfaq_pi1\'' .
-            BackendUtility::BEenableFields('tt_content') .
-            BackendUtility::deleteClause('tt_content')
-        );
-        return ($row['t'] > 0);
+
+        /** @var QueryBuilder $queryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $queryBuilder->getRestrictions()
+            ->add(GeneralUtility::makeInstance(StartTimeRestriction::class))
+            ->add(GeneralUtility::makeInstance(EndTimeRestriction::class));
+        $queryBuilder
+            ->select('*')
+            ->from('tt_content')
+            ->where(
+                $queryBuilder->expr()->eq('list_type', $queryBuilder->createNamedParameter('irfaq_pi1'))
+            );
+
+        $statement = $queryBuilder->execute();
+        return !empty($statement->fetchAll());
     }
 
     /**
@@ -100,15 +110,22 @@ class ext_update
     function runConversion()
     {
         $content = '';
+
+
         // Select all instances
-        $res = $this->getDatabaseConnection()->exec_SELECTquery(
-            'uid,pid,pi_flexform',
-            'tt_content',
-            'list_type=\'irfaq_pi1\'' .
-            BackendUtility::BEenableFields('tt_content') .
-            BackendUtility::deleteClause('tt_content')
-        );
-        $results = $this->getDatabaseConnection()->sql_num_rows($res);
+        /** @var QueryBuilder $queryBuilder */
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $queryBuilder
+            ->select('uid','pid','pi_flexform')
+            ->from('tt_content')
+            ->where(
+                $queryBuilder->expr()->eq('list_type', $queryBuilder->createNamedParameter('irfaq_pi1'))
+            );
+
+        $statement = $queryBuilder->execute();
+        $allRows = $statement->fetchAll();
+
+        $results = count($allRows);
         $converted = 0;
         $data = [];
         $pidList = [];
@@ -121,7 +138,7 @@ class ext_update
         $GLOBALS['TYPO3_CONF_VARS']['BE']['niceFlexFormXMLtags'] = true;
 
         // Walk all rows
-        while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
+        foreach($allRows as $row) {
             $ffArray = GeneralUtility::xml2array($row['pi_flexform']);
             $modified = false;
             if (is_array($ffArray) && isset($ffArray['data']['sDEF'])) {
@@ -154,7 +171,6 @@ class ext_update
                 $converted++;
             }
         }
-        $this->getDatabaseConnection()->sql_free_result($res);
 
         if ($converted > 0) {
             // Update data
@@ -175,14 +191,6 @@ class ext_update
         $content .= '<p>' . sprintf($this->lang->getLL('result'), $results, $converted) .
             '</p>';
         return $content;
-    }
-
-    /**
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 
     /**
