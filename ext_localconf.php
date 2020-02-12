@@ -31,7 +31,7 @@ $GLOBALS ['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['pro
 
 // Hook to comments for comments closing
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['comments']['closeCommentsAfter'][$_EXTKEY]
-    = 'EXT:irfaq/Classes/Hooks/Comments/CommentsCloseTimeHook.php'
+    = 'EXT:irfaq/Classes/Hooks/Comments/CloseCommentsAfterHook.php'
         . ':Netcreators\Irfaq\Hooks\Comments\CloseCommentsAfterHook->irfaqHook';
 
 
