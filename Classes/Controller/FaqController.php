@@ -540,7 +540,7 @@ class FaqController extends AbstractPlugin
         if (isset($this->categories[$row['uid']])) {
             reset($this->categories[$row['uid']]);
 
-            while (list($key, $val) = each($this->categories[$row['uid']])) {
+            foreach ($this->categories[$row['uid']] as $key => $val) {
                 // find categories, wrap them with links and collect them in the array $faq_category.
                 if ($this->conf['catTextMode'] == 1) {
                     // link to category shortcut page
@@ -673,7 +673,7 @@ class FaqController extends AbstractPlugin
     {
         $checkedFields = [];
         $fArr = GeneralUtility::trimExplode(',', $fieldlist, 1);
-        while (list(, $fN) = each($fArr)) {
+        foreach ($fArr as $fM => $fN) {
             if (in_array($fN, $this->fieldNames)) {
                 $checkedFields[] = $fN;
             }
