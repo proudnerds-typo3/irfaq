@@ -1,3 +1,7 @@
+2020-02-13 v1.7.14 Tania Morales <extensions@proudnerds.com>
+    * Migrated TCA to overrides for compatibility.
+    * Thanks to A. wolo Wolski <wolo.wolski@gmail.com>
+
 2020-02-13 v1.7.13 Tania Morales <extensions@proudnerds.com>
 	* Includes fixes for deprecations and preparation for packagist.
 	* Thanks to multiple collaborators
