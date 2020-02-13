@@ -1,3 +1,11 @@
+2020-02-13 v1.7.13 Tania Morales <extensions@proudnerds.com>
+	* Includes fixes for deprecations and preparation for packagist.
+	* Thanks to multiple collaborators
+	    - Ingo Pfennigstorf <i.pfennigstorf@gmail.com>
+	    - Thomas Löffler <loeffler@spooner-web.de>
+	    - Florian Wessels <f.wessels@bitmotion.de>
+	    - Thomas Hucke
+
 2018-03-16 v1.7.12 Leonie Philine Bitto <leonie@netcreators.nl>
 	* Compatibility with TYPO3 8.7 LTS.
 
