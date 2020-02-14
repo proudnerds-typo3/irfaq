@@ -39,6 +39,9 @@ namespace Netcreators\Irfaq\Hooks\Comments;
  *
  * @author Dmitry Dulepov <dmitry@typo3.org>
  */
+
+use TYPO3\CMS\Frontend\Page\PageRepository;
+
 class CloseCommentsAfterHook
 {
     /**
@@ -71,7 +74,7 @@ class CloseCommentsAfterHook
         $recs = $this->getDatabaseConnection()->exec_SELECTgetRows(
             'disable_comments,comments_closetime',
             $table,
-            'uid=' . intval($uid) . $cObj->enableFields($table)
+            'uid=' . intval($uid) . PageRepository->enableFields($table);
         );
         if (count($recs)) {
             $result = $recs[0]['disable_comments'] ? 0 :

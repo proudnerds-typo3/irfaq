@@ -1,3 +1,10 @@
+2020-02-14 v2.0.0 Tania Morales <extensions@proudnerds.com>
+    * Compatibility update for v9.5
+    * Initial compatibility for v10
+    * Thanks to collaborators
+        - Gianluca Strafella
+        - Danilo Caccialanza
+
 2020-02-13 v1.7.14 Tania Morales <extensions@proudnerds.com>
     * Migrated TCA to overrides for compatibility.
     * Thanks to A. wolo Wolski <wolo.wolski@gmail.com>

@@ -1,29 +1,24 @@
 {
-    "name": "netcreators/irfaq",
-    "description": "FAQ frontend plugin with dynamic or static view which will merge and improve functionality of EXT:faq and EXT:faq_plus into a modern look",
-    "type": "typo3-cms-extension",
-    "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "Leonie Philine Bitto",
-            "email": "extensions@netcreators.com"
-        },
-        {
-            "name": "Tania Morales",
-            "email": "extensions@netcreators.com"
-        }
-    ],
-    "require": {
-        "typo3/cms": "^7.6.15 || ^8.7.0"
-    },
-    "replace": {
-        "irfaq": "self.version",
-        "typo3-ter/irfaq": "self.version"
-    },
-    "autoload": {
-        "psr-4": {
-            "Netcreators\\Irfaq\\": "Classes/"
-        },
-        "classmap": [ "class.ext_update.php" ]
-    }
+	"name" : "proudnerds-typo3/irfaq",
+	"type" : "typo3-cms-extension",
+	"description" : "FAQ frontend plugin with dynamic or static view",
+	"authors" : [{
+			"name" : "Netcreators",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"typo3/cms-core" : "^9.5"
+	},
+    "license": ["GPL-2.0-or-later"],
+	"autoload" : {
+		"psr-4" : {
+			"Netcreators\\Irfaq\\" : "Classes"
+		}
+	},
+	"config" : {
+		"optimize-autoloader" : true,
+		"vendor-dir" : ".build/vendor",
+		"bin-dir" : ".build/bin"
+	}
 }
