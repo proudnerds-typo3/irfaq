@@ -9,7 +9,6 @@ return [
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'versioningWS' => TRUE,
-        'versioning_followPages' => TRUE,
         'origUid' => 't3_origuid',
         'transOrigPointerField' => 'l18n_parent',
         'transOrigDiffSourceField' => 'l18n_diffsource',
@@ -28,11 +27,6 @@ return [
     'types' => [
         '0' => [
             'showitem' => 'hidden,--palette--;;1,q,a,--div--;Details,q_from,expert,related,related_links,faq_files,cat,--div--;LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq_q.extra_tab,enable_ratings,disable_comments,comments_closetime',
-            'columnsOverrides' => [
-                'a' => [
-                    'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts_css]',
-                ],
-            ],
         ],
     ],
     'palettes' => [
@@ -41,7 +35,7 @@ return [
     'columns' => [
         'hidden' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
                 'default' => '0'
@@ -49,15 +43,15 @@ return [
         ],
         'fe_group' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     ['', 0],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login', -1],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.any_login', -2],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.usergroups', '--div--']
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', -2],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', '--div--']
                 ],
                 'foreign_table' => 'fe_groups'
             ]
@@ -82,7 +76,7 @@ return [
         ],
         'cat' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.category',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.category',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
@@ -101,19 +95,7 @@ return [
                 'type' => 'text',
                 'cols' => '30',
                 'rows' => '5',
-                'wizards' => [
-                    '_PADDING' => 2,
-                    'RTE' => [
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'type' => 'script',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext.W.RTE',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
-                        'module' => [
-                            'name' => 'wizard_rte',
-                        ],
-                    ],
-                ],
+                'enableRichtext' => true,
             ],
             'softref' => 'typolink_tag,images,email[subst],url'
         ],
@@ -143,31 +125,12 @@ return [
                 'autoSizeMax' => 10,
                 'multiple' => false,
                 'maxitems' => 1000, // looks reasonable
-                'wizards' => [
-                    '_PADDING' => 2,
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq_q.related_edit',
-                        'script' => 'wizard_edit.php',
-                        'icon' => 'actions-open',
-                        'popup_onlyOpenIfSelected' => 1,
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        'module' => [
-                            'name' => 'wizard_edit'
-                        ],
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
                     ],
-                    'add' => [
-                        'type' => 'script',
-                        'title' => 'LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq_q.related_new',
-                        'icon' => 'actions-add',
-                        'params' => [
-                            'table' => 'tx_irfaq_q',
-                            'pid' => '###CURRENT_PID###',
-                            'setValue' => 'append'
-                        ],
-                        'module' => [
-                            'name' => 'wizard_add'
-                        ],
+                    'addRecord' => [
+                        'disabled' => false,
                     ],
                 ],
             ],
@@ -209,31 +172,31 @@ return [
             'l10n_mode' => 'exclude',
             'label' => 'LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq_q.comments_closetime',
             'config' => [
+                'renderType' => 'inputDateTime',
                 'type' => 'input',
                 'size' => '12',
-                'max' => '20',
                 'eval' => 'datetime',
                 'checkbox' => '0',
             ]
         ],
         'sys_language_uid' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
                 ]
             ]
         ],
         'l18n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
