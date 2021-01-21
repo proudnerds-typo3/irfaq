@@ -38,7 +38,15 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => '0'
+                'default' => '0',
+                'renderType' => 'checkboxToggle',
+                'items'      => [
+                    [
+                        0                    => '',
+                        1                    => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
             ]
         ],
         'fe_group' => [
@@ -149,8 +157,12 @@ return [
             'l10n_mode' => 'exclude',
             'config' => [
                 'type' => 'check',
-                'items' => [
-                    ['', '']
+                'renderType' => 'checkboxToggle',
+                'items'      => [
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
                 ],
                 'default' => '1'
             ]
@@ -161,8 +173,12 @@ return [
             'l10n_mode' => 'exclude',
             'config' => [
                 'type' => 'check',
-                'items' => [
-                    ['', '']
+                'renderType' => 'checkboxToggle',
+                'items'      => [
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
                 ],
                 'default' => '0'
             ]
@@ -185,6 +201,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
+                'special' => 'languages',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [

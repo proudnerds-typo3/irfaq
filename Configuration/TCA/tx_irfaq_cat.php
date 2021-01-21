@@ -33,7 +33,15 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => '0'
+                'default' => '0',
+                'renderType' => 'checkboxToggle',
+                'items'      => [
+                    [
+                        0                    => '',
+                        1                    => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
             ]
         ],
         'fe_group' => [
@@ -79,6 +87,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
+                'special'    => 'languages',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => [
                     ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
