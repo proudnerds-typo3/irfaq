@@ -269,9 +269,9 @@ class FaqController extends AbstractPlugin
             }
         }
 
-       
+
         $this->templateCode = file_get_contents(GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['templateFile']));
-        
+
         $this->initCategories(); // initialize category-array
         $this->initExperts(); // initialize experts-array
 
@@ -298,11 +298,11 @@ class FaqController extends AbstractPlugin
             : $this->getTypoScriptFrontendController()->config['config']['sys_language_overlay'];
 
         //$this->conf['iconPlus'] = $this->getTypoScriptFrontendController()->tmpl->getFileName($this->conf['iconPlus']);
-        
+
         $this->conf['iconPlus'] = file_get_contents(GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['iconPlus']));
-        
+
         //$this->conf['iconMinus'] = $this->getTypoScriptFrontendController()->tmpl->getFileName($this->conf['iconMinus']);
-        
+
         $this->conf['iconMinus'] = file_get_contents(GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($this->conf['iconMinus']));
     }
 
@@ -316,10 +316,10 @@ class FaqController extends AbstractPlugin
     {
         $rootlineStoragePid = $this->getStorageSiterootPids();
 
-        $storagePidCsv = implode(
+        $storagePidCsv = trim(implode(
             ', ',
             [$rootlineStoragePid['_STORAGE_PID'], $this->conf['pidList']]
-        );
+        ), ', ');
 
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_irfaq_cat');
@@ -529,7 +529,7 @@ class FaqController extends AbstractPlugin
 
         $faq_category = [];
 
-       
+
         if (GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('workspace', 'id') && $row['_ORIG_uid'] > 0) {
             $row['uid'] = $row['_ORIG_uid'];
         }
@@ -611,7 +611,7 @@ class FaqController extends AbstractPlugin
             );
         }
 
-        
+
         if (GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('workspace', 'id') > 0) {
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->orX(
@@ -1160,7 +1160,7 @@ class FaqController extends AbstractPlugin
     }
 
     protected function getCurrentWorkspaceId()
-    {   
+    {
         return GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('workspace', 'id');
     }
 
@@ -1231,6 +1231,11 @@ class FaqController extends AbstractPlugin
         }
 
         $ids = $this->getResolver('tx_irfaq_q', array_keys($faqs))->get();
+
+        if (!$ids) {
+            return [];
+        }
+
         $rows = $this->getQuestionsByUids($ids, $sortingStatement);
 
         return $rows;
