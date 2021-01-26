@@ -15,6 +15,7 @@
 							<label>LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.what_to_display</label>
 							<config>
 								<type>select</type>
+								<renderType>selectMultipleSideBySide</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.view_dynamic</numIndex>
@@ -46,6 +47,7 @@
 							<label>LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.sorting</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.sorting_ts</numIndex>
@@ -94,6 +96,7 @@
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
@@ -131,6 +134,7 @@
 							<label>LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.enableRatings</label>
 							<config>
 								<type>check</type>
+								<renderType>checkboxToggle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
@@ -156,6 +160,7 @@
 							<label>LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.select_deselect_categories</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.category_selection_showAll</numIndex>
@@ -180,6 +185,7 @@
 							<label>LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.category_selection</label>
 							<config>
 								<type>select</type>
+								<renderType>selectMultipleSideBySide</renderType>
 								<items type="array">
 									<numIndex index="100">
 										<numIndex index="0">LLL:EXT:irfaq/Resources/Private/Language/locallang_db.xlf:tx_irfaq.pi_flexform.category_selection_notCategorized</numIndex>

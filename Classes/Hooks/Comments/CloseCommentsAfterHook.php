@@ -40,6 +40,8 @@ namespace Netcreators\Irfaq\Hooks\Comments;
  * @author Dmitry Dulepov <dmitry@typo3.org>
  */
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Page\PageRepository;
 
 class CloseCommentsAfterHook
@@ -71,27 +73,16 @@ class CloseCommentsAfterHook
     function getCloseTime($table, $uid, &$cObj)
     {
         $result = 0;
-        $recs = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'disable_comments,comments_closetime',
-            $table,
-            'uid=' . intval($uid) . PageRepository->enableFields($table);
-        );
+        $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $qb->select('disable_comments', 'comments_closetime')
+            ->from($table)
+            ->where($qb->expr()->eq('uid', $qb->createNamedParameter($uid)));
+        $recs = $qb->execute()->fetchAll();
         if (count($recs)) {
             $result = $recs[0]['disable_comments'] ? 0 :
                 ($recs[0]['comments_closetime'] ? $recs[0]['comments_closetime'] : PHP_INT_MAX);
         }
         return $result;
-    }
-
-    /**
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        /** @var \TYPO3\CMS\Core\Database\DatabaseConnection $TYPO3_DB */
-        global $TYPO3_DB;
-
-        return $TYPO3_DB;
     }
 }
 
