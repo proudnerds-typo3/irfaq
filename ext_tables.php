@@ -9,12 +9,6 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_irfaq_cat');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_irfaq_expert');
 
-
-
-$GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses']['Netcreators\\Irfaq\\System\\Backend\\WizardIcon'] =
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('irfaq')
-        . 'Classes/System/Backend/WizardIcon.php';
-
 /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 $iconRegistry->registerIcon(
